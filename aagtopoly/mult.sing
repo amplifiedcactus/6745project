@@ -1,0 +1,49 @@
+// This file verifies a 2-bit integer multiplier over Q
+
+// Lex order RTTO
+// Ring R = 0..., 0 = field of characteristic 0 = Q
+ring R = 0, (x10, x21, x31, x32, x30, x29, x28, x27, x26, x25, x24, x23, x22, x20, x19, x18, x17, x16, x15, x14, x13, x12, x11, x9, x7, x5, x3, x1, x0, x2, x4, x6, x8), lp;
+
+// Under non RTTO order, e.g. deglex, J + J0 will NOT be a GB itself!
+// Deglex = degree lex
+//ring r = 0, (x2, x4, x6, x8, e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, x10, x21, x31, x32), Dp;
+
+poly f_spec = (x10 + 2*x21 + 4*x31 + 8*x32) - (x2 + 2*x4)*(x6 + 2*x8); //spec
+
+poly f0 = x21 - (1-x20);
+poly f1 = x31 - (1-x30);
+poly f2 = x10 - (x2*x6);
+poly f3 = x12 - (x4*x6);
+poly f4 = x14 - (x2*x8);
+poly f5 = x15 - (1-x14);
+poly f6 = x16 - (x12*x15);
+poly f7 = x13 - (1-x12);
+poly f8 = x18 - (x13*x14);
+poly f9 = x17 - (1-x16);
+poly f10 = x19 - (1-x18);
+poly f11 = x20 - (x17*x19);
+poly f12 = x22 - (x4*x8);
+poly f13 = x24 - (x12*x14);
+poly f14 = x25 - (1-x24);
+poly f15 = x26 - (x22*x25);
+poly f16 = x23 - (1-x22);
+poly f17 = x28 - (x23*x24);
+poly f18 = x27 - (1-x26);
+poly f19 = x29 - (1-x28);
+poly f20 = x30 - (x27*x29);
+poly f21 = x32 - (x22*x24);
+
+ideal J = f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21;
+
+ideal J0 = x2^2 - x2, x4^2 - x4, x6^2 - x6, x8^2 - x8;
+
+printf("J+J0 = minimal GB even for integer arithmetic circuits");
+printf("J + J0 is:");
+J+J0;
+
+printf("non reduced but minimal GB(J+J0) is:");
+option(noredSB);
+groebner(J+J0);
+
+printf("Verification: f_spec mod (J+J0) should be 0");
+reduce(f_spec, J+J0);

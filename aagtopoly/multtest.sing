@@ -1,0 +1,51 @@
+ring R = 0, (x_10, x_21, x_31, x_32, x_30, x_29, x_28, x_27, x_26, x_25, x_24, x_23, x_22, x_20, x_19, x_18, x_17, x_16, x_15, x_14, x_13, x_12, x_11, x_9, x_7, x_5, x_3, x_1, x_0, x_2, x_4, x_6, x_8), lp;
+
+poly f_spec = (1*x_10 + 2*x_21 + 4*x_31 + 8*x_32) - (1*x_2 + 2*x_4)*(1*x_6 + 2*x_8);
+ideal J0 = x_2^2 - x_2, x_4^2 - x_4, x_6^2 - x_6, x_8^2 - x_8;
+
+//row ordering:
+//row 1 - gates 1 and 2
+poly f0 = x_21 - (1-x_20);
+poly f1 = x_31 - (1-x_30);
+poly f2 = x_10 - (x_2*x_6);
+poly f21 = x_32 - (x_22*x_24);
+
+//row 2 - gates 5 and 3
+
+
+poly f3 = x_12 - (x_4*x_6);
+poly f4 = x_14 - (x_2*x_8);
+poly f5 = x_15 - (1-x_14);
+poly f6 = x_16 - (x_12*x_15);
+poly f7 = x_13 - (1-x_12);
+poly f8 = x_18 - (x_13*x_14);
+poly f9 = x_17 - (1-x_16);
+poly f10 = x_19 - (1-x_18);
+poly f11 = x_20 - (x_17*x_19);
+poly f12 = x_22 - (x_4*x_8);
+poly f13 = x_24 - (x_12*x_14);
+poly f14 = x_25 - (1-x_24);
+poly f15 = x_26 - (x_22*x_25);
+poly f16 = x_23 - (1-x_22);
+poly f17 = x_28 - (x_23*x_24);
+poly f18 = x_27 - (1-x_26);
+poly f19 = x_29 - (1-x_28);
+poly f20 = x_30 - (x_27*x_29);
+
+
+//ideal J = f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21;
+//output row
+
+//f is f_spec
+//f1 is J1+J0
+//f2 is J2
+//f/f1 = (q1,r1)
+//r1/f2 = (q2,r2)
+
+//ideal J1 = f0, f1, f2, f21;
+//ideal J2 = f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20;
+
+//printf("Verification: f_spec mod (J+J0) should be 0"); 
+//ideal J3 = reduce(f_spec, J1+J0);
+//J3;
+//reduce(J3, J2+J0);

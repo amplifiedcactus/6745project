@@ -1,0 +1,53 @@
+.model 2bit_multiplier
+.inputs a0 a1 b0 b1
+.outputs z0 z1 z2 z3
+
+# --- Layer 1 Gates ---
+
+# Gate 6 (AND)
+# Inputs: a1, b1 -> Output: x1
+.names a1 b1 x1
+11 1
+
+# Gate 7 (AND)
+# Inputs: a1, b0 -> Output: x2
+.names a1 b0 x2
+11 1
+
+# Gate 8 (AND)
+# Inputs: a0, b1 -> Output: x3
+.names a0 b1 x3
+11 1
+
+# Gate 4 (AND)
+# Inputs: a0, b0 -> Output: z0 (wire x4)
+.names a0 b0 z0
+11 1
+
+# --- Layer 2 Gates ---
+
+# Gate 5 (AND)
+# Inputs: x2, x3 -> Output: x5
+.names x2 x3 x5
+11 1
+
+# Gate 3 (XOR)
+# Inputs: x2, x3 -> Output: z1
+.names x2 x3 z1
+10 1
+01 1
+
+# --- Layer 3 Gates ---
+
+# Gate 1 (AND)
+# Inputs: x1, x5 -> Output: z3
+.names x1 x5 z3
+11 1
+
+# Gate 2 (XOR)
+# Inputs: x1, x5 -> Output: z2
+.names x1 x5 z2
+10 1
+01 1
+
+.end
