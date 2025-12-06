@@ -1,4 +1,6 @@
 # Prerequisites
+aagtopoly
+*.singularhistory
 *.d
 
 # Compiled Object files

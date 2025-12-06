@@ -1,0 +1,44 @@
+.model mult_4x4
+.inputs a0 a1 a2 a3 b0 b1 b2 b3 
+.outputs z0 z1 z2 z3 z4 z5 z6 z7 
+.names a0 b0 z0
+11 1
+.names a1 b0 r0x0
+11 1
+.names a2 b0 r0x1
+11 1
+.names a3 b0 r0x2
+11 1
+.subckt fulladder_and a=r0x0 b0=a0 b1=b1 cin=0 s=z1 cout=r1c0
+.subckt fulladder_and a=r0x1 b0=a1 b1=b1 cin=r1c0 s=r1x0 cout=r1c1
+.subckt fulladder_and a=r0x2 b0=a2 b1=b1 cin=r1c1 s=r1x1 cout=r1c2
+.subckt fulladder_and a=0 b0=a3 b1=b1 cin=r1c2 s=r1x2 cout=r1c3
+.subckt fulladder_and a=r1x0 b0=a0 b1=b2 cin=0 s=z2 cout=r2c0
+.subckt fulladder_and a=r1x1 b0=a1 b1=b2 cin=r2c0 s=r2x0 cout=r2c1
+.subckt fulladder_and a=r1x2 b0=a2 b1=b2 cin=r2c1 s=r2x1 cout=r2c2
+.subckt fulladder_and a=r1c3 b0=a3 b1=b2 cin=r2c2 s=r2x2 cout=r2c3
+.subckt fulladder_and a=r2x0 b0=a0 b1=b3 cin=0 s=z3 cout=r3c0
+.subckt fulladder_and a=r2x1 b0=a1 b1=b3 cin=r3c0 s=z4    cout=r3c1
+.subckt fulladder_and a=r2x2 b0=a2 b1=b3 cin=r3c1 s=z5    cout=r3c2
+.subckt fulladder_and a=r2c3 b0=a3 b1=b3 cin=r3c2 s=z6 cout=z7
+
+.model fulladder_and
+.inputs a b0 b1 cin
+.outputs s cout
+.names b0 b1 b
+11 1
+.names a b k
+10 1
+01 1
+.names k cin s
+10 1
+01 1
+.names a b p
+00 0
+.names a b g
+11 1
+.names p cin m
+11 1
+.names m g cout
+00 0
+.end
