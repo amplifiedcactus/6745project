@@ -234,11 +234,5 @@ ideal J = f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, 
 
 ideal J0 = x_2^2 - x_2, x_4^2 - x_4, x_6^2 - x_6, x_8^2 - x_8, x_10^2 - x_10, x_12^2 - x_12, x_14^2 - x_14, x_16^2 - x_16, x_18^2 - x_18, x_20^2 - x_20;
 
-//printf("Verification: f_spec mod (J+J0) should be 0"); 
-//reduce(f_spec, J+J0);
-
-system("--ticks-per-sec", 100);
-timer = 0;
 printf("Verification: f_spec mod (J+J0) should be 0"); 
  reduce(f_spec, J+J0);
-timer;

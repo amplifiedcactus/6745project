@@ -7,19 +7,27 @@ poly f1 = x_31 - (1-x_30);
 poly f2 = x_10 - (x_2*x_6);
 poly f3 = x_12 - (x_4*x_6);
 poly f4 = x_14 - (x_2*x_8);
-poly f5 = x_15 - (1-x_14);
-poly f6 = x_16 - (x_12*x_15);
 poly f7 = x_13 - (1-x_12);
 poly f8 = x_18 - (x_13*x_14);
+poly f12 = x_22 - (x_4*x_8);
+poly f16 = x_23 - (1-x_22);
+poly f17 = x_28 - (x_23*x_24);
+
+
+poly f5 = x_15 - (1-x_14);
+poly f6 = x_16 - (x_12*x_15);
+
+
+
+
 poly f9 = x_17 - (1-x_16);
 poly f10 = x_19 - (1-x_18);
 poly f11 = x_20 - (x_17*x_19);
-poly f12 = x_22 - (x_4*x_8);
+
 poly f13 = x_24 - (x_12*x_14);
 poly f14 = x_25 - (1-x_24);
 poly f15 = x_26 - (x_22*x_25);
-poly f16 = x_23 - (1-x_22);
-poly f17 = x_28 - (x_23*x_24);
+
 poly f18 = x_27 - (1-x_26);
 poly f19 = x_29 - (1-x_28);
 poly f20 = x_30 - (x_27*x_29);

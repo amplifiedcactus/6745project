@@ -1,0 +1,19 @@
+ring R = 0, (x_10, x_20, x_30, x_32, x_31, x_29, x_28, x_27, x_26, x_25, x_24, x_23, x_22, x_21, x_19, x_18, x_17, x_16, x_15, x_14, x_13, x_12, x_11, x_9, x_7, x_5, x_3, x_1, x_0, x_2, x_4, x_6, x_8), lp;
+
+poly f_spec = (1*x_10 + 2*x_20 + 4*x_30 + 8*x_32) - (1*x_2 + 2*x_4)*(1*x_6 + 2*x_8);
+
+poly f0 = x_10 - (x_2*x_6);
+poly f1 = x_12 - (x_4*x_6);
+poly f2 = x_14 - (x_2*x_8);
+poly f3 = x_22 - (x_4*x_8);
+poly f4 = x_24 - (x_12*x_14);
+poly f5 = x_32 - (x_22*x_24);
+poly f6 = x_20 - (x_12 + x_14 - 2*x_12*x_14);
+poly f7 = x_30 - (x_22 + x_24 - 2*x_22*x_24);
+
+ideal J = f0, f1, f2, f3, f4, f5, f6, f7;
+
+ideal J0 = x_2^2 - x_2, x_4^2 - x_4, x_6^2 - x_6, x_8^2 - x_8;
+
+printf("Verification: f_spec mod (J+J0) should be 0"); 
+ reduce(f_spec, J+J0);
