@@ -404,16 +404,6 @@ int main(int argc, char *argv[]) {
 
     fspec += ");\n";
 
-
-    //create J string
-    J += "ideal J = ";
-    for (int k = 0; k < polycount; k++) {
-        J += "f" + std::to_string(k);
-        if (k != polycount - 1)
-            J += ", ";
-    }
-    J += ";\n";
-
     //create J0 string
     //loop through inputs, create vanishing polynomials [input_var^2 - input_var]
     J0 += "ideal J0 = ";
@@ -433,12 +423,22 @@ int main(int argc, char *argv[]) {
         }
     }
     J0 += ";\n";
-    printf("fspec: %s\n", fspec.c_str());
-    printf("J: %s\n", J.c_str());
-    printf("J0: %s\n", J0.c_str());
+
+
+    //create J string
+    J += "ideal J = ";
+    for (int k = 0; k < polycount; k++) {
+        J += "f" + std::to_string(k);
+        if (k != polycount - 1)
+            J += ", ";
+    }
+    J += ";\n";
+
+
+
     fclose(infile);
 
-    std::string lastlines = "printf(\"Verification: f_spec mod (J+J0) should be 0\"); \n reduce(f_spec, J+J0);\n";
+    std::string lastlines = "printf(\"Verification: f_spec mod (J+J0) should be 0\"); \nreduce(f_spec, J+J0);\n";
 
     //create .sing file
     fprintf(outfile, "%s\n%s\n%s\n%s\n%s\n%s", order.c_str(), fspec.c_str(), polynomials.c_str(), J.c_str(), J0.c_str(), lastlines.c_str());
